@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+int main(int argc,char *argv[])
+{
+printf("Overlayed process id %d\n",getpid());
+printf("argc count in child %d\n",argc);
+printf("child is %s and its arguments are %s %s\n",argv[0],argv[1],argv[2]);
+printf ("exec ends\n");
+}

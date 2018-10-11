@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include<sys/wait.h>
+
+
+int main()
+{
+pid_t pid, pid1;
+//t pid;
+pid = fork();
+pid1 = fork();
+if (pid == 0)
+{
+/*1st child process */
+printf ("child 1 terminated \n");
+}
+else if (pid1 == 0)
+{
+/*2nd child process */
+printf ("child 2 terminated \n");
+}
+else
+{
+pid = wait(0);
+printf ("1st child pid %d \n", getpid());
+pid1 = wait(0);
+printf ("2nd child pid %d \n", getpid());
+printf ("parent process");
+}
+return 0;
+}

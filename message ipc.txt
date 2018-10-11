@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<sys/types.h>
+#include<sys/msg.h>
+struct msgbuff
+{
+int mtype;
+char mtext[100];
+}message;
+void main()
+{
+int qid;
+qid = msgget((key_t)01,IPC_CREAT | 0666);
+message.mtype=1; 
+printf("Enter the message\n ");
+scanf("%s",message.mtext);
+if(msgsnd(qid,&message,sizeof(message),-1))
+{printf("error");}
+else
+{printf("Message sent");
+if(msgrcv(qid, &message, sizeof(message),0,0))
+printf("\n message RECEIVED");
+else
+printf("\nerror");
+}
+}

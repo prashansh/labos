@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/shm.h>
+void main()
+{
+char *ptr;
+int shmid,pid;
+shmid=shmget((key_t)1,10,IPC_CREAT|0666);
+printf("shared memory id %d\n",shmid);
+if (shmid < 0) printf("error \n");
+ptr=shmat(shmid,0,0);
+printf("%p\n",ptr);
+pid=fork();
+if (pid == 0)
+{
+strcpy(ptr,"Hello----");
+}
+else
+{
+wait(0);
+printf("Parent reads -----------%s\n",ptr);
+}
+}

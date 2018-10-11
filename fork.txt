@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<sys/types.h>
+#include<unistd.h>
+
+int main()
+{
+int pid1,pid2,cpid;
+fork();
+{
+printf("I CHILD:TERMINATED with id: %d\n",getpid());
+pid1=getppid();
+printf("I PArent:TERMINATED with id: %d\n",pid1);
+}
+fork();
+{
+printf("II CHILD:TERMINATED with id: %d\n",getpid());
+pid2=getppid();
+}
+
+
+printf("Parent process executed\n");
+return 0;
+}

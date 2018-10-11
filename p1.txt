@@ -1,0 +1,10 @@
+#include <stdio.h>
+#include <unistd.h>
+int main()
+{
+printf(" Process id %d\n",getpid());
+// specify the complete path of the exe file, name of the exe file , NULL
+execl("/home/prashansh/Desktop/p2","p2",NULL);
+
+return 0;
+}
